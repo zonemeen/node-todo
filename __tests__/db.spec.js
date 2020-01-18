@@ -3,13 +3,13 @@ const fs = require('fs')
 jest.mock('fs')
 
 describe('db', ()=>{
-  afterEach(() => { //每调用一个it，都会调用fs.clearMocks()
+  afterEach(() => { 
     fs.clearMocks()
   })
   it('can read', async ()=>{
-    const data = [{title: 'hi', done: true}] //{title: 'hi', done: true}
-    fs.setReadFileMock('/xxx', null, JSON.stringify(data)) //在fs.readFile上面做手脚
-    const list = await db.read('/xxx') //调用的是fs.readFile
+    const data = [{title: 'hi', done: true}] 
+    fs.setReadFileMock('/xxx', null, JSON.stringify(data)) 
+    const list = await db.read('/xxx') 
     expect(list).toStrictEqual(data)
   })
   it('can write', async () => {
